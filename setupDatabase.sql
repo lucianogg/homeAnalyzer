@@ -44,6 +44,12 @@ CREATE TABLE temperature (
 CREATE USER temperatureLogger@'192.168.1.0/255.255.255.0' IDENTIFIED BY 'tempLogger123';
 GRANT INSERT ON homeData.temperature TO temperatureLogger@'192.168.1.0/255.255.255.0';
 GRANT SELECT ON homeData.temperature TO temperatureLogger@'192.168.1.0/255.255.255.0';
+FLUSH PRIVILEGES;
 
 INSERT INTO temperature (timeDate, value) VALUES ('2018-02-01 11:40:00', 39.5);
 
+CREATE USER nightLogger@'192.168.1.0/255.255.255.0' IDENTIFIED BY 'nightLogger123';
+GRANT INSERT ON homeData.nightSlept TO nightLogger@'192.168.1.0/255.255.255.0';
+GRANT SELECT ON homeData.nightSlept TO nightLogger@'192.168.1.0/255.255.255.0';
+GRANT SELECT ON homeData.temperature TO nightLogger@'192.168.1.0/255.255.255.0';
+FLUSH PRIVILEGES;
